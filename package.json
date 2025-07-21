@@ -1,0 +1,38 @@
+{
+  "name": "devops-portfolio-2030",
+  "version": "1.0.0",
+  "description": "Futuristic DevOps Engineer Portfolio - 2030 Edition",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "framer-motion": "^10.16.0",
+    "lucide-react": "^0.292.0",
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.5.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "react-terminal-ui": "^1.2.0",
+    "react-tilt": "^1.0.2",
+    "react-tsparticles": "^2.9.0",
+    "react-type-animation": "^3.2.0",
+    "tsparticles": "^2.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.9",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@types/react-syntax-highlighter": "^15.5.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.51.0",
+    "eslint-config-next": "^14.0.0",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2"
+  }
+}
