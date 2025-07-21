@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Award, ExternalLink } from 'lucide-react'
+import { useState } from 'react'
 
 const certifications = [
   {
@@ -55,11 +56,17 @@ const certifications = [
   }
 ]
 
+type Certification = typeof certifications[number];
+
 export default function CertificationsSection() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   })
+  const [modalCert, setModalCert] = useState<Certification|null>(null);
+
+  const openModal = (cert: Certification) => setModalCert(cert)
+  const closeModal = () => setModalCert(null)
 
   return (
     <section id="certifications" className="py-20 relative">
@@ -130,6 +137,7 @@ export default function CertificationsSection() {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="mt-4 cyber-button w-full flex items-center justify-center"
+                      onClick={() => openModal(cert)}
                     >
                       <ExternalLink className="mr-2" size={16} />
                       VERIFY
@@ -140,6 +148,41 @@ export default function CertificationsSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* Modal for mock certificate */}
+        {modalCert && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70" onClick={closeModal}>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-cyber-black border-4 border-neon-green rounded-2xl shadow-2xl p-8 max-w-md w-full relative"
+              onClick={e => e.stopPropagation()}
+            >
+              <button onClick={closeModal} className="absolute top-4 right-4 text-neon-green text-xl font-bold">×</button>
+              <div className="flex flex-col items-center">
+                <div className="text-5xl mb-4">{modalCert.icon}</div>
+                <h3 className="text-2xl font-cyber text-neon-green mb-2 text-center">{modalCert.name}</h3>
+                <div className="text-gray-400 text-sm mb-2">{modalCert.issuer}</div>
+                <div className="flex items-center mb-4">
+                  <Award className="text-neon-blue mr-2" size={20} />
+                  <span className="text-neon-blue text-lg">{modalCert.year}</span>
+                </div>
+                <div className="w-full border-t border-neon-green/30 my-4" />
+                <div className="text-center mb-2">
+                  <span className="text-neon-green font-cyber">CREDENTIAL ID:</span>
+                  <span className="text-neon-blue ml-2 font-mono">{modalCert.credential}</span>
+                </div>
+                <div className="flex items-center justify-center mt-4">
+                  <span className="bg-neon-green text-cyber-black px-4 py-2 rounded-full font-bold text-lg flex items-center">
+                    <Award className="mr-2" size={18} />
+                    VERIFIED
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
 
         {/* Certification Stats */}
         <motion.div

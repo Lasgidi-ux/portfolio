@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Server, Cpu, Memory, Activity } from 'lucide-react'
+import { Server, Cpu, Database, Activity } from 'lucide-react'
 
 const nodes = [
   { name: 'worker-01', status: 'Ready', cpu: 65, memory: 78, pods: 12 },
@@ -86,7 +86,7 @@ export default function KubEye() {
             className="p-4 border border-neon-blue/30 rounded-lg bg-cyber-gray/30"
           >
             <div className="flex items-center justify-between">
-              <Memory className="text-neon-blue" size={24} />
+              <Database className="text-neon-blue" size={24} />
               <span className="text-neon-blue font-cyber text-2xl">{metrics.memory}%</span>
             </div>
             <div className="text-sm text-gray-400 mt-2">Memory Usage</div>

@@ -112,14 +112,14 @@ export default function AboutSection() {
               </div>
             </div>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <a
+              href="/Rachel_DevOps_CV.pdf"
+              download
               className="cyber-button w-full flex items-center justify-center"
             >
               <Download className="mr-2" size={20} />
               DOWNLOAD CV
-            </motion.button>
+            </a>
           </motion.div>
 
           {/* Timeline Section */}

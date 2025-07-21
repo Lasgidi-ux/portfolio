@@ -69,7 +69,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-16 md:py-20 lg:py-24 relative">
+    <section id="contact" className="py-16 md:py-20 lg:py-24 relative border-4 border-red-500 z-[9999] bg-cyber-black/90">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -100,64 +100,75 @@ export default function ContactSection() {
                   <h3 className="text-xl md:text-2xl font-cyber text-neon-blue">SEND_MESSAGE</h3>
                 </div>
                 
-                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6" autoComplete="on" aria-label="Contact form">
                   <div className="space-y-2">
-                    <label className="block text-neon-green text-sm font-cyber mb-2 flex items-center">
+                    <label htmlFor="contact-name" className="block text-neon-green text-sm font-cyber mb-2 flex items-center">
                       <Zap className="mr-2" size={16} />
                       NAME
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full bg-cyber-gray/80 backdrop-blur-sm border border-neon-green/30 text-white p-3 md:p-4 rounded-lg focus:border-neon-green focus:outline-none focus:ring-2 focus:ring-neon-green/20 transition-all duration-300"
                       placeholder="Enter your name"
                       required
+                      autoComplete="name"
+                      aria-label="Name"
                     />
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="block text-neon-green text-sm font-cyber mb-2 flex items-center">
+                    <label htmlFor="contact-email" className="block text-neon-green text-sm font-cyber mb-2 flex items-center">
                       <Mail className="mr-2" size={16} />
                       EMAIL
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-cyber-gray/80 backdrop-blur-sm border border-neon-green/30 text-white p-3 md:p-4 rounded-lg focus:border-neon-green focus:outline-none focus:ring-2 focus:ring-neon-green/20 transition-all duration-300"
                       placeholder="your.email@example.com"
                       required
+                      autoComplete="email"
+                      aria-label="Email"
                     />
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="block text-neon-green text-sm font-cyber mb-2 flex items-center">
+                    <label htmlFor="contact-subject" className="block text-neon-green text-sm font-cyber mb-2 flex items-center">
                       <MessageCircle className="mr-2" size={16} />
                       SUBJECT
                     </label>
                     <input
+                      id="contact-subject"
                       type="text"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                       className="w-full bg-cyber-gray/80 backdrop-blur-sm border border-neon-green/30 text-white p-3 md:p-4 rounded-lg focus:border-neon-green focus:outline-none focus:ring-2 focus:ring-neon-green/20 transition-all duration-300"
                       placeholder="What's this about?"
                       required
+                      autoComplete="off"
+                      aria-label="Subject"
                     />
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="block text-neon-green text-sm font-cyber mb-2 flex items-center">
+                    <label htmlFor="contact-message" className="block text-neon-green text-sm font-cyber mb-2 flex items-center">
                       <Send className="mr-2" size={16} />
                       MESSAGE
                     </label>
                     <textarea
+                      id="contact-message"
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       rows={4}
                       className="w-full bg-cyber-gray/80 backdrop-blur-sm border border-neon-green/30 text-white p-3 md:p-4 rounded-lg focus:border-neon-green focus:outline-none focus:ring-2 focus:ring-neon-green/20 transition-all duration-300 resize-none"
                       placeholder="Tell me about your project or question..."
                       required
+                      aria-label="Message"
                     />
                   </div>
                   
@@ -168,7 +179,9 @@ export default function ContactSection() {
                     }}
                     whileTap={{ scale: 0.98 }}
                     disabled={isSubmitting}
-                    className="cyber-button w-full flex items-center justify-center py-4 text-lg font-bold relative overflow-hidden group"
+                    className="cyber-button w-full flex items-center justify-center py-4 text-lg font-bold relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-neon-green/40"
+                    aria-label="Send message"
+                    type="submit"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-neon-green to-neon-blue opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                     <span className="relative z-10 flex items-center">
@@ -327,19 +340,22 @@ export default function ContactSection() {
                       )}
                     </div>
                     
-                    <form onSubmit={handleChatSubmit} className="flex space-x-2">
+                    <form onSubmit={handleChatSubmit} className="flex space-x-2" aria-label="Chat with OpsBot AI">
                       <input
                         type="text"
                         value={chatInput}
                         onChange={(e) => setChatInput(e.target.value)}
                         placeholder="Ask me about DevOps, cloud, or automation..."
                         className="flex-1 bg-cyber-gray/80 backdrop-blur-sm border border-neon-green/30 text-white p-3 rounded-l-lg focus:border-neon-green focus:outline-none focus:ring-2 focus:ring-neon-green/20 transition-all duration-300"
+                        aria-label="Chat input"
+                        onKeyDown={(e) => { if (e.key === 'Escape') setChatOpen(false) }}
                       />
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         type="submit"
-                        className="bg-neon-green text-cyber-black px-4 py-3 rounded-r-lg hover:bg-neon-blue transition-colors duration-300 font-bold"
+                        className="bg-neon-green text-cyber-black px-4 py-3 rounded-r-lg hover:bg-neon-blue transition-colors duration-300 font-bold focus:outline-none focus:ring-2 focus:ring-neon-green/40"
+                        aria-label="Send chat message"
                       >
                         Send
                       </motion.button>
@@ -350,6 +366,20 @@ export default function ContactSection() {
             </div>
           </motion.div>
         </div>
+      </div>
+      {/* 1. Add aria-live region for notifications */}
+      <div aria-live="polite" id="contact-success-region" className="sr-only"></div>
+      {/* 2. Add floating contact button for mobile */}
+      <div className="fixed bottom-6 right-6 z-50 block lg:hidden">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+          className="bg-neon-green text-cyber-black p-4 rounded-full shadow-lg hover:bg-neon-blue transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-neon-green/40"
+          aria-label="Scroll to contact form"
+        >
+          <Mail size={24} />
+        </motion.button>
       </div>
     </section>
   )

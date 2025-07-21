@@ -42,30 +42,24 @@ export default function Navigation() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
     if (element) {
-      const offset = 80 // Account for fixed navigation height
+      // Dynamically get the header height
+      const header = document.querySelector('nav') || document.querySelector('header')
+      const offset = header ? header.getBoundingClientRect().height : 100
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - offset
-      
-      // Set navigating state for visual feedback
+
       setIsNavigating(true)
-      
-      // Close mobile menu immediately for better UX
       setIsOpen(false)
-      
-      // Add a small delay to ensure menu closes before scrolling
       setTimeout(() => {
         window.scrollTo({
           top: offsetPosition,
           behavior: 'smooth'
         })
-        
-        // Reset navigating state after scroll completes
         setTimeout(() => {
           setIsNavigating(false)
         }, 1000)
       }, 100)
     } else {
-      // If element not found, still close menu
       setIsOpen(false)
     }
   }

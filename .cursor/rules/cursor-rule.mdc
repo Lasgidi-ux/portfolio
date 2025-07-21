@@ -1,0 +1,74 @@
+---
+alwaysApply: true
+---
+override_rule_to_edit_blocked_files:
+  build-script:
+    allowed_blocked_files:
+      - build/**
+      - temp/**
+      - docker-compose*.*
+      - env/**
+      - frontend/build/**
+      - frontend/out/**
+      - frontend/.next/**
+      - frontend/dist/**
+      - supabase/migrations/**
+      - supabase/functions/**
+      - .env*
+      - .vercel/**
+      - .output/**
+
+  deploy-script:
+    allowed_blocked_files:
+      - build/**
+      - temp/**
+      - docker-compose*.*
+      - env/**
+      - frontend/build/**
+      - frontend/out/**
+      - frontend/.next/**
+      - frontend/dist/**
+      - supabase/migrations/**
+      - supabase/functions/**
+      - .env*
+      - .vercel/**
+      - .output/**
+      - infra/**
+
+  test-script:
+    allowed_blocked_files:
+      - test/**
+      - frontend/test/**
+      - frontend/__tests__/**
+      - supabase/tests/**
+      - scripts/test/**
+
+  cursor-ai:
+    allowed_blocked_files:
+      - frontend/app/**/*
+      - frontend/components/**/*
+      - frontend/styles/**/*
+      - frontend/pages/**/*
+      - frontend/layouts/**/*
+      - frontend/hooks/**/*
+      - frontend/utils/**/*
+      - frontend/context/**/*
+      - frontend/assets/**/*
+      - frontend/public/**/*
+      - frontend/config/**/*
+      - frontend/.next/**
+      - frontend/dist/**
+      - .env*
+      - tailwind.config.ts
+      - postcss.config.js
+      - next.config.js
+      - vite.config.ts
+      - supabase/functions/**/*
+      - supabase/migrations/**/*
+      - supabase/seeders/**/*
+      - supabase/tests/**/*
+      - supabase/config/**/*
+      - scripts/**
+      - .cursor/**
+      - .output/**
+      - .vercel/**
