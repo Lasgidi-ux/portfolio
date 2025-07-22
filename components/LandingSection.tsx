@@ -44,9 +44,11 @@ export default function LandingSection() {
             className="font-cyber font-semibold text-white mb-6 break-words text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight sm:leading-tight md:leading-snug lg:leading-snug"
             style={{ wordBreak: 'break-word' }}
           >
-            <span className="text-neon-green">OYEFESO</span>{' '}
-            <span className="text-neon-purple">AYOKUNBI</span>{' '}
-            <span className="text-neon-blue">RACHEAL</span>
+            <span className="flex flex-wrap justify-center gap-x-2 gap-y-1">
+              <span className="text-neon-green block text-nowrap sm:inline">OYEFESO</span>
+              <span className="text-neon-purple block text-nowrap sm:inline">AYOKUNBI</span>
+              <span className="text-neon-blue block text-nowrap sm:inline">RACHEAL</span>
+            </span>
           </h1>
         </motion.div>
 

@@ -71,9 +71,9 @@ export default function AboutSection() {
               </div>
               
               <div className="space-y-4">
-                <div className="flex items-center">
+                <div className="flex items-center min-w-0">
                   <span className="text-neon-blue font-bold w-24">Name:</span>
-                  <span className="text-gray-300">Oyefeso Ayokunbi Rachel</span>
+                  <span className="text-gray-300 break-words text-base sm:text-lg md:text-xl">Oyefeso Ayokunbi Rachel</span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-neon-blue font-bold w-24">Contact:</span>
