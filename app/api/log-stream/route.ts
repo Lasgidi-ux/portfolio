@@ -158,8 +158,12 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(response, { status: 200 })
   } catch (error) {
+    console.error(error)
     return NextResponse.json(
-      { error: 'Failed to fetch log stream' },
+      {
+        error: 'Failed to fetch log stream',
+        ...(process.env.NODE_ENV !== 'production' && { details: error instanceof Error ? error.message : String(error) })
+      },
       { status: 500 }
     )
   }
@@ -207,8 +211,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(response, { status: 200 })
   } catch (error) {
+    console.error(error)
     return NextResponse.json(
-      { error: 'Failed to process log action' },
+      {
+        error: 'Failed to process log action',
+        ...(process.env.NODE_ENV !== 'production' && { details: error instanceof Error ? error.message : String(error) })
+      },
       { status: 500 }
     )
   }

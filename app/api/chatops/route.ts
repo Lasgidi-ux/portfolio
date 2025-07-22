@@ -272,8 +272,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(response, { status: 200 })
   } catch (error) {
+    console.error(error)
     return NextResponse.json(
-      { error: 'Failed to process ChatOps command' },
+      {
+        error: 'Failed to process ChatOps command',
+        ...(process.env.NODE_ENV !== 'production' && { details: error instanceof Error ? error.message : String(error) })
+      },
       { status: 500 }
     )
   }
@@ -300,8 +304,12 @@ export async function GET() {
       lastUpdated: new Date().toISOString()
     }, { status: 200 })
   } catch (error) {
+    console.error(error)
     return NextResponse.json(
-      { error: 'Failed to fetch ChatOps information' },
+      {
+        error: 'Failed to fetch ChatOps information',
+        ...(process.env.NODE_ENV !== 'production' && { details: error instanceof Error ? error.message : String(error) })
+      },
       { status: 500 }
     )
   }

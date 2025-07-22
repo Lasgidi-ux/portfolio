@@ -152,8 +152,12 @@ export async function GET() {
 
     return NextResponse.json(response, { status: 200 })
   } catch (error) {
+    console.error(error)
     return NextResponse.json(
-      { error: 'Failed to fetch pipeline data' },
+      {
+        error: 'Failed to fetch pipeline data',
+        ...(process.env.NODE_ENV !== 'production' && { details: error instanceof Error ? error.message : String(error) })
+      },
       { status: 500 }
     )
   }
@@ -197,8 +201,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(response, { status: 200 })
   } catch (error) {
+    console.error(error)
     return NextResponse.json(
-      { error: 'Failed to process pipeline action' },
+      {
+        error: 'Failed to process pipeline action',
+        ...(process.env.NODE_ENV !== 'production' && { details: error instanceof Error ? error.message : String(error) })
+      },
       { status: 500 }
     )
   }

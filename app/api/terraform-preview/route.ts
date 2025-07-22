@@ -286,8 +286,12 @@ provider "aws" {
 
     return NextResponse.json(response, { status: 200 })
   } catch (error) {
+    console.error(error)
     return NextResponse.json(
-      { error: 'Failed to generate Terraform preview' },
+      {
+        error: 'Failed to generate Terraform preview',
+        ...(process.env.NODE_ENV !== 'production' && { details: error instanceof Error ? error.message : String(error) })
+      },
       { status: 500 }
     )
   }
@@ -307,8 +311,12 @@ export async function GET() {
       lastUpdated: new Date().toISOString()
     }, { status: 200 })
   } catch (error) {
+    console.error(error)
     return NextResponse.json(
-      { error: 'Failed to fetch available resources' },
+      {
+        error: 'Failed to fetch available resources',
+        ...(process.env.NODE_ENV !== 'production' && { details: error instanceof Error ? error.message : String(error) })
+      },
       { status: 500 }
     )
   }
